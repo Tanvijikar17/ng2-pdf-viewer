@@ -14,6 +14,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import { SampleComponent } from './sample/sample.component';
+import { SafeUrlPipe } from './safe-url.pipe';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -22,12 +25,15 @@ import {MatButtonModule} from '@angular/material/button';
     UploadComponent,
     ViewComponent,
     ToolbarComponent,
+    SampleComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, MatProgressBarModule, MatCardModule, MatIconModule,
-    FormsModule, ReactiveFormsModule, PdfViewerModule, MatToolbarModule, MatButtonModule
+    FormsModule, ReactiveFormsModule, PdfViewerModule, MatToolbarModule, MatButtonModule, 
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

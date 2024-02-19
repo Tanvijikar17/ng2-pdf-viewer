@@ -1,12 +1,62 @@
+<div class="select-file__container">
+    <p>
+      Or render preview by just selecting PDF file (no upload required)
+    </p>
+    <input (change)="onFileSelected($event)" type="file" id="file">
+    <!-- <iframe *ngIf="pdfSrc" [src]="pdfSrc | safeUrl" width="100%" height="500px"></iframe> -->
+    <!-- <button type="submit">Upload</button>  -->
+</div>
+
+<div class="page">
+  <nav *ngIf="isLoaded">
+    <button (click)="prevPage()" [disabled]="page === 1" class="previous">
+      Prev
+    </button>
+    <button (click)="nextPage()" [disabled]="page === totalPages" class="next">
+      Next
+    </button>
+    <!-- <p>{{ page }} / {{ totalPages }}</p> -->
+  </nav>
+
+<!-- <div class="mb">
+  <mat-slide-toggle color="primary" [(ngModel)]="showAll">
+    Show all pages
+  </mat-slide-toggle>
+</div>
+
+<div *ngIf="showAll" class="mb">
+  <mat-slide-toggle [(ngModel)]="stickToPage">
+    Stick to page
+  </mat-slide-toggle>
+</div>
+
+<div *ngIf="stickToPage && showAll || !showAll" class="mb">
+  <button (click)="incrementPage(-1)" mat-button type="button">
+    Previous
+  </button>
+
+  <span *ngIf="pdf">of {{ pdf.numPages }}</span>
+  <button (click)="incrementPage(1)" mat-button type="button">
+    Next
+  </button> -->
+
+
 <div class="example-sidenav-content justify-content-center text-center">
-<pdf-viewer #pdfComponent [src]="src"
+<pdf-viewer #pdfComponent [src]="pdfSrc"
               [render-text]="true"
               [original-size]="false"
+              [rotation]="0"
+              [show-all]="false"
+              [fit-to-page]="true"
+              [zoom]="zoomValue" 
+              [zoom-scale]="'page-width'"
+              [stick-to-page]="true"
+              [external-link-target]="'blank'"
+              [autoresize]="true"
+              [show-borders]="false"
+              class="pdf-viewer"
+              [page]="page"
+              (after-load-complete)="afterLoadComplete($event)"
+              class="pdf-viewer"
               style="height: 100vh; width: 100vh; margin-left: 50% ; display: block;">
 </pdf-viewer>
-<!-- <input (change)="onFileSelected()" type="file" id="file"> -->
-<!-- <form (ngSubmit)="onSubmit()">
-    <input type="file" (change)="onFileChange($event)">
-    <button type="submit">Submit</button>
-</form>
-</div> -->
